@@ -16,11 +16,6 @@ yarn-error.log
 # Frontend - Temporary or IDE files
 .vscode/
 .idea/
-*.log
-
-# Ignore OS-specific files
-.DS_Store
-Thumbs.db
 
 # Backend - Visual Studio files
 .vs/
@@ -33,9 +28,6 @@ Thumbs.db
 # Backend - Temporary or build files
 bin/
 obj/
-*.tmp
-*.bak
-*.swp
 
 # Backend - Config files (usually containing sensitive info)
 appsettings.json
@@ -50,26 +42,16 @@ appsettings.Development.json
 # Backend - Generated or test-related files
 coverage/
 
-# Backend - Environment files
-*.env
-
-# Common IDE/Editor-related files
-.vscode/
-.idea/
-
-# Common system-related files
-.DS_Store
-Thumbs.db
-
-# Common log files
-*.log
-
-# Ignore backup files or temporary files
+# Common - Temporary files (for both frontend and backend)
 *.bak
 *.swp
 *.tmp
 
-# Ignore any git-related debug files (from npm/yarn)
+# Common - git-related debug files (from npm/yarn)
 npm-debug.log
 yarn-debug.log
 yarn-error.log
+
+# Common - OS-specific files
+.DS_Store
+Thumbs.db
