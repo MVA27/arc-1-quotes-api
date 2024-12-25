@@ -24,6 +24,7 @@ yarn-error.log
 *.userosscache
 *.suo
 *.sln.docstates
+.env
 
 # Backend - Temporary or build files
 bin/

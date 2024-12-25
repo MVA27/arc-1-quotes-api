@@ -4,6 +4,12 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 # Set the working directory in the container
 WORKDIR /app
 
+# Define the build argument for DB_CONNECTION_STRING
+ARG DB_CONNECTION_STRING
+
+# Set the environment variable for DB_CONNECTION_STRING
+ENV DB_CONNECTION_STRING=${DB_CONNECTION_STRING}
+
 # Copy the solution file and the project files into the container
 COPY Backend/Backend.sln ./Backend/
 COPY Backend/Quotes.Api/Quotes.Api.csproj ./Backend/Quotes.Api/

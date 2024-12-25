@@ -65,7 +65,7 @@ jobs:
 
       # Build the Docker image with the 'my-dotnet-app' tag
       - name: Build Docker image
-        run: docker build -t backend-api .
+        run: docker build --build-arg DB_CONNECTION_STRING=${{ secrets.DB_CONNECTION_STRING }} -t backend-api .
 
       # Log in to Docker Hub
       - name: Log in to Docker Hub
