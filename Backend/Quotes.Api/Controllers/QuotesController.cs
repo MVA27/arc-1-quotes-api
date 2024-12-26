@@ -25,7 +25,8 @@ public class QuotesController : ControllerBase
             Id = row.Id,
             Quote = row.Quote,
             FirstName = row.AuthorNavProp.FirstName,
-            LastName = row.AuthorNavProp.LastName
+            LastName = row.AuthorNavProp.LastName,
+            ImageUrl = row.AuthorNavProp.ImageUrl
         }).ToListAsync();
 
         if (quotes.Count == 0) {
@@ -50,7 +51,8 @@ public class QuotesController : ControllerBase
                 Id = row.Id,
                 Quote = row.Quote,
                 FirstName = row.AuthorNavProp.FirstName,
-                LastName = row.AuthorNavProp.LastName
+                LastName = row.AuthorNavProp.LastName,
+                ImageUrl = row.AuthorNavProp.ImageUrl
             }
             ).FirstOrDefaultAsync();
 
@@ -78,7 +80,7 @@ public class QuotesController : ControllerBase
         //update Author table 
         if (author == null) { // add new author
 
-            var newAuthor = new AuthorModel { FirstName = response.FirstName, LastName = response.LastName };
+            var newAuthor = new AuthorModel { FirstName = response.FirstName, LastName = response.LastName, ImageUrl = response.ImageUrl ?? "" };
 
             await _db.AuthorDb.AddAsync(newAuthor);
             await _db.SaveChangesAsync();
@@ -166,6 +168,10 @@ public class QuotesController : ControllerBase
         if (response.LastName != null)
         {
             author.LastName = response.LastName;
+        }
+        if (response.ImageUrl != null)
+        {
+            author.ImageUrl = response.ImageUrl;
         }
 
         _db.AuthorDb.Update(author);

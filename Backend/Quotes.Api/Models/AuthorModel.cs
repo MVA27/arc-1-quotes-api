@@ -14,4 +14,7 @@ public class AuthorModel
     [Required]
     [MaxLength(20)]
     public string LastName { get; set; } = string.Empty;
+
+    [MaxLength(2083)]
+    public string ImageUrl { get; set; } = string.Empty;
 }
