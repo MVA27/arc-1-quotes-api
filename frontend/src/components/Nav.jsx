@@ -10,28 +10,6 @@ export default function Nav(){
 
     return (
         <>
-            {/* <nav className="navbar">
-
-                <Link to="/">Home</Link>
-                <Link to="/quotes">Quotes</Link>
-                <Link to="/about">About</Link>
-
-            </nav> */}
-            {/* <TabNav.Root>
-
-                <TabNav.Link asChild active={pathname === "/"}>
-                    <Link to="/">Home </Link>
-                </TabNav.Link>
-
-                <TabNav.Link asChild active={pathname === "/quotes"}>
-                    <Link to="/quotes">Quotes</Link>
-                </TabNav.Link>   
-
-                <TabNav.Link asChild active={pathname === "/about"}>
-                    <Link to="/about">About</Link>
-                </TabNav.Link>           
-
-            </TabNav.Root> */}
             <TabNav.Root justify="center">
 
                 {/* / */}

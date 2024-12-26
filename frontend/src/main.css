@@ -1,0 +1,108 @@
+.colors {
+    --teal-1: #0a1311;
+    --teal-2: #0e1b19;
+    --teal-3: #062d27;
+    --teal-4: #003c32;
+    --teal-5: #00493e;
+    --teal-6: #00584c;
+    --teal-7: #066a5c;
+    --teal-8: #008170;
+    --teal-9: #008170;
+    --teal-10: #147162;
+    --teal-11: #6dd1bd;
+    --teal-12: #b2f6e6;
+  
+    --teal-a1: #00bb1103;
+    --teal-a2: #00f9cb0b;
+    --teal-a3: #00ffcc1e;
+    --teal-a4: #00fbc52f;
+    --teal-a5: #00ffd13c;
+    --teal-a6: #00fdd54d;
+    --teal-a7: #00fdd860;
+    --teal-a8: #00ffdb78;
+    --teal-a9: #00ffdb78;
+    --teal-a10: #19ffda67;
+    --teal-a11: #83ffe6ce;
+    --teal-a12: #b7feedf6;
+  
+    --teal-contrast: #fff;
+    --teal-surface: #0c252180;
+    --teal-indicator: #008170;
+    --teal-track: #008170;
+
+    --gray-1: #0e1116;
+    --gray-2: #16191e;
+    --gray-3: #1e232a;
+    --gray-4: #242a33;
+    --gray-5: #2a313c;
+    --gray-6: #313a47;
+    --gray-7: #3e4857;
+    --gray-8: #576171;
+    --gray-9: #646f7f;
+    --gray-10: #717c8c;
+    --gray-11: #a9b4c5;
+    --gray-12: #ebeef3;
+    
+    --gray-a1: #0012e606;
+    --gray-a2: #6da3fe0e;
+    --gray-a3: #8cbbfe1b;
+    --gray-a4: #94bdfb25;
+    --gray-a5: #99bffb2f;
+    --gray-a6: #9ec6ff3a;
+    --gray-a7: #aaccff4b;
+    --gray-a8: #bfd8ff67;
+    --gray-a9: #c5ddff76;
+    --gray-a10: #cbe0ff84;
+    --gray-a11: #dae9ffc1;
+    --gray-a12: #f6f9fef3;
+    
+    --gray-contrast: #FFFFFF;
+    --gray-surface: rgba(0, 0, 0, 0.05);
+    --gray-indicator: #646f7f;
+    --gray-track: #646f7f;    
+  }
+  
+.dark{
+    --primary-accent: var(--teal-9);
+    --secondary-accent: var(--teal-8);
+    --contrast-accent: var(--teal-contrast);
+
+    --primary-gray: var(--gray-10);
+    --secondary-gray: var(--gray-7);
+    --contrast-gray: var(--gray-contrast);
+}
+
+.button-primary {
+    background-color: var(--primary-accent); 
+    color: var(--contrast-accent);
+}
+
+.button-primary:hover {
+    background-color: var(--secondary-accent);
+}
+
+body{
+    background-image: url("../public/green.svg");
+    background-size: cover;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-repeat: no-repeat;
+}
+
+div{
+    background-color: transparent;
+}
+
+.home-div{
+    color: var(--contrast-accent);
+    text-align: center;
+}
+
+.quote-card{
+    margin: 5px;
+    background-color: var(--primary-gray);
+}
+
+.card-author{
+    color: var(--primary-accent);
+}

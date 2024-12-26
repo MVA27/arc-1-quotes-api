@@ -1,7 +1,9 @@
+import { Button, Container } from "@radix-ui/themes";
+
 export default function Home(){
     return (
-        <>
-            <h1>Home</h1>
-        </>
+        <div className="home-div">
+            <h1> Welcome to Quotes </h1>
+        </div>
     );
 }

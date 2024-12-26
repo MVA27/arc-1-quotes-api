@@ -29,7 +29,7 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Theme>
+    <Theme hasBackground={false}>
 
       <RouterProvider router={router}/>
 
