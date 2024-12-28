@@ -68,7 +68,7 @@
     --contrast-accent: var(--teal-contrast);
 
     --primary-gray: var(--gray-10);
-    --secondary-gray: var(--gray-7);
+    --secondary-gray: #000000;
     --contrast-gray: var(--gray-contrast);
 }
 
@@ -100,7 +100,7 @@ div{
 
 .quote-card{
     margin: 5px;
-    background-color: var(--primary-gray);
+    background-color: var(--contrast-gray);
 }
 
 .card-author{

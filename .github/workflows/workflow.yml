@@ -20,6 +20,10 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 18.16.1
+      
+    - name: Set Enviroment variable
+      run: |
+        echo "VITE_API_URL=http://${{ secrets.ELASTIC_IP }}:80" >> frontend/.env
 
     # Step 3: Install Dependencies and Build Vite App
     - name: Install dependencies and build

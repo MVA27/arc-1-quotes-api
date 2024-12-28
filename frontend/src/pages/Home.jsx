@@ -1,5 +1,3 @@
-import { Button, Container } from "@radix-ui/themes";
-
 export default function Home(){
     return (
         <div className="home-div">
