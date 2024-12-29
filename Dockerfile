@@ -4,12 +4,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 # Set the working directory in the container
 WORKDIR /app
 
-# Define the build argument for DB_CONNECTION_STRING
-ARG DB_CONNECTION_STRING
-
-# Set the environment variable for DB_CONNECTION_STRING
-ENV DB_CONNECTION_STRING=${DB_CONNECTION_STRING}
-
 # Copy the solution file and the project files into the container
 COPY Backend/Backend.sln ./Backend/
 COPY Backend/Quotes.Api/Quotes.Api.csproj ./Backend/Quotes.Api/
@@ -27,6 +21,9 @@ RUN dotnet publish Backend/Quotes.Api/Quotes.Api.csproj -c Release -o /app/publi
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 8080
+
+# Define the environment variable for DB_CONNECTION_STRING in the runtime stage
+ENV DB_CONNECTION_STRING=${DB_CONNECTION_STRING}
 
 # Copy the published output from the build stage
 COPY --from=build /app/publish .

@@ -15,7 +15,7 @@ export default function Quotes(){
     useEffect(()=>{
         const endpoint = import.meta.env.VITE_API_URL;  // for Vite
 
-        fetch(endpoint)
+        fetch(endpoint + "/api/quotes")
         .then(data => data.json())
         .then(json => updateData(json))
     },[])
