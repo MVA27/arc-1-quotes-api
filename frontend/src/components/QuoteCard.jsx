@@ -12,7 +12,10 @@ export default function QuoteCard({quote, firstName, lastName, imageUrl}){
                         size="7"
                         src={imageUrl}
                         radius="full"
-                        fallback="T"
+                        fallback={firstName[0]}
+                        color="gray"
+                        variant="solid"
+                        highContrast 
                     />
 
                     <Box>
@@ -21,7 +24,7 @@ export default function QuoteCard({quote, firstName, lastName, imageUrl}){
                         </Text>
 
                         <Text as="div" size="2" className="card-author">
-                            {firstName} &nbsp; {lastName}
+                            {firstName} {lastName}
                         </Text>
                     </Box>
                     
