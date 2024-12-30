@@ -11,4 +11,6 @@ public class QuotesDTO
     public string? LastName { get; set; }
 
     public string? ImageUrl { get; set; }
+
+    public QuoteType? Type { get; set; }
 }
