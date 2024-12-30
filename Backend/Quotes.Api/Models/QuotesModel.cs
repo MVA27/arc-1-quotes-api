@@ -13,6 +13,9 @@ public class QuotesModel
     public string Quote { get; set; } = string.Empty;
 
     [Required]
+    public QuoteType Type { get; set; }
+
+    [Required]
     public int AuthorId { get; set; } // Foreign Key
 
     [ForeignKey("AuthorId")]
