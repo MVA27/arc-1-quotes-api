@@ -1,15 +1,20 @@
 import QuoteCard from "../components/QuoteCard";
 import { useState, useEffect } from "react";
-import { Flex, Spinner } from '@radix-ui/themes'
+import { Box , Spinner, Flex, ScrollArea, Select } from '@radix-ui/themes'
+import { selectionItems } from '../constants/selectionItems';
 
 export default function Quotes(){
 
-    let quotes = [ 
-                 {id: 1, quote: 'Be yourself; everyone else is already taken', firstName: 'Oscar', lastName: 'Wilde', imageUrl: 'https://images.gr-assets.com/authors/1673611182p8/3565.jpg'},
-                 {id: 2, quote: 'Two things are infinite: the universe and human stupidity; and I`m not sure about the universe', firstName: 'Albert', lastName: 'Einstein', imageUrl: 'https://images.gr-assets.com/authors/1429114964p8/9810.jpg'}
-                ];
+    const [ isLoading, updateLoadingStatus ] = useState(true);
+    const [data , updateData ] = useState([{}]);
+    const [type , setType ] = useState(0);
 
-    const [data , updateData ] = useState(quotes);
+    function updateAllStates(json){
+
+        updateData(json);
+        updateLoadingStatus(false);
+
+    }
 
     useEffect(()=>{
 
@@ -17,15 +22,67 @@ export default function Quotes(){
 
         fetch(endpoint + "/api/quotes")
             .then(data => data.json())
-            .then(json => updateData(json))
-   
+            .then(json => updateAllStates(json))
+
     },[])
 
+    
     return (
+        
         <>
-            { 
-                data.map(item => ( < QuoteCard key={item.id} {...item} /> ) )
-            }
+
+            <Select.Root defaultOpen={0} value={type} onValueChange={ setType } >
+
+                <Select.Trigger />
+
+                <Select.Content >
+
+                    <Select.Group className="dark">
+
+                        <Select.Label className="select-item-label">Type</Select.Label>
+                        {
+                            selectionItems.map(
+                                (label, index)=> (<Select.Item className="select-item" key={index} value={index}> {label} </Select.Item>) 
+                            )
+                        }
+
+                    </Select.Group>
+
+                </Select.Content>
+
+            </Select.Root>
+
+            <Box style={ 
+                {
+                    width: '100%',
+                    height: '100vh',
+
+                    display: isLoading ? 'flex' : undefined,
+                    justifyContent: isLoading ? 'center' : undefined,
+                    alignItems:  isLoading ? 'center' : undefined
+                }
+            }>
+                { 
+                    isLoading 
+                        ? <Spinner className="spinner" size="3"/> 
+                        : <ScrollArea type="always" scrollbars="vertical" style={{ height: '95%' }}>
+                            <Flex direction="column"> 
+                                { 
+                                    type == 0 
+                                        ? data.map(item => ( < QuoteCard key={item.id} {...item} /> ) ) 
+                                        : data
+                                            .filter((item)=> item.type == type )
+                                            .map(item => ( < QuoteCard key={item.id} {...item} /> ) )
+                                    
+                                } 
+                            </Flex>  
+                        </ScrollArea>
+                }
+            </Box >
+        
         </>
+
+
+
     );
 }

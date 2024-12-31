@@ -68,7 +68,7 @@
     --contrast-accent: var(--teal-contrast);
 
     --primary-gray: var(--gray-10);
-    --secondary-gray: #000000;
+    --secondary-gray: var(--gray-9);
     --contrast-gray: var(--gray-contrast);
 }
 
@@ -104,5 +104,17 @@ div{
 }
 
 .card-author{
+    color: var(--primary-accent);
+}
+
+.spinner {
+    color: var(--gray-contrast);
+}
+
+.select-item:hover{
+    background-color: var(--primary-accent);
+}
+
+.select-item-label{
     color: var(--primary-accent);
 }
