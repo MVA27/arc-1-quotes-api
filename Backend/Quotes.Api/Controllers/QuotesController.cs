@@ -26,7 +26,8 @@ public class QuotesController : ControllerBase
             Quote = row.Quote,
             FirstName = row.AuthorNavProp.FirstName,
             LastName = row.AuthorNavProp.LastName,
-            ImageUrl = row.AuthorNavProp.ImageUrl
+            ImageUrl = row.AuthorNavProp.ImageUrl,
+            Type = row.Type
         }).ToListAsync();
 
         if (quotes.Count == 0) {
@@ -52,12 +53,13 @@ public class QuotesController : ControllerBase
                 Quote = row.Quote,
                 FirstName = row.AuthorNavProp.FirstName,
                 LastName = row.AuthorNavProp.LastName,
-                ImageUrl = row.AuthorNavProp.ImageUrl
+                ImageUrl = row.AuthorNavProp.ImageUrl,
+                Type = row.Type
             }
             ).FirstOrDefaultAsync();
 
         if (quote == null) {
-           return NotFound(new { Message = Messages.QuoteNotFound });
+            return NotFound(new { Message = Messages.QuoteNotFound });
         }
 
         return Ok(quote);
@@ -68,7 +70,9 @@ public class QuotesController : ControllerBase
 
         if (string.IsNullOrWhiteSpace(response.Quote) ||
             string.IsNullOrWhiteSpace(response.FirstName) ||
-            string.IsNullOrWhiteSpace(response.LastName))
+            string.IsNullOrWhiteSpace(response.LastName) ||
+            (!response.Type.HasValue || !Enum.IsDefined(typeof(QuoteType), response.Type.Value))
+            )
         {
             return BadRequest(new { Message = Messages.MissingRequiredFields });
         }
@@ -85,10 +89,10 @@ public class QuotesController : ControllerBase
             await _db.AuthorDb.AddAsync(newAuthor);
             await _db.SaveChangesAsync();
 
-            quote = new QuotesModel { Quote = response.Quote, AuthorId = newAuthor.Id };
+            quote = new QuotesModel { Quote = response.Quote, Type = response.Type.Value, AuthorId = newAuthor.Id };
         }
         else {
-            quote = new QuotesModel { Quote = response.Quote, AuthorId = author.Id };
+            quote = new QuotesModel { Quote = response.Quote, Type = response.Type.Value, AuthorId = author.Id };
         }
 
         //update Quote table
@@ -114,6 +118,11 @@ public class QuotesController : ControllerBase
         if (response.Quote != null)
         {
             quote.Quote = response.Quote;
+        }
+
+        if (response.Type.HasValue && Enum.IsDefined(typeof(QuoteType), response.Type.Value))
+        {
+            quote.Type = response.Type.Value; 
         }
 
         //Update Author if its passed in DTO
