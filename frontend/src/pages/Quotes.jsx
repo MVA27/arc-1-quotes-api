@@ -1,32 +1,15 @@
 import QuoteCard from "../components/QuoteCard";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Box , Spinner, Flex, ScrollArea, Select } from '@radix-ui/themes'
 import { selectionItems } from '../constants/selectionItems';
+import { useLoaderData, useNavigation } from "react-router-dom";
 
 export default function Quotes(){
 
-    const [ isLoading, updateLoadingStatus ] = useState(true);
-    const [data , updateData ] = useState([{}]);
+    const data = useLoaderData();
+    const navigation = useNavigation()
     const [type , setType ] = useState(0);
 
-    function updateAllStates(json){
-
-        updateData(json);
-        updateLoadingStatus(false);
-
-    }
-
-    useEffect(()=>{
-
-        const endpoint = import.meta.env.VITE_API_URL;
-
-        fetch(endpoint + "/api/quotes")
-            .then(data => data.json())
-            .then(json => updateAllStates(json))
-
-    },[])
-
-    
     return (
         
         <>
@@ -57,13 +40,13 @@ export default function Quotes(){
                     width: '100%',
                     height: '100vh',
 
-                    display: isLoading ? 'flex' : undefined,
-                    justifyContent: isLoading ? 'center' : undefined,
-                    alignItems:  isLoading ? 'center' : undefined
+                    display: navigation == 'loading' ? 'flex' : undefined,
+                    justifyContent: navigation == 'loading' ? 'center' : undefined,
+                    alignItems:  navigation == 'loading' ? 'center' : undefined
                 }
             }>
                 { 
-                    isLoading 
+                    navigation == 'loading'
                         ? <Spinner className="spinner" size="3"/> 
                         : <ScrollArea type="always" scrollbars="vertical" style={{ height: '95%' }}>
                             <Flex direction="column"> 
@@ -81,8 +64,6 @@ export default function Quotes(){
             </Box >
         
         </>
-
-
 
     );
 }
