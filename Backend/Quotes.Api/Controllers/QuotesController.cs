@@ -31,7 +31,7 @@ public class QuotesController : ControllerBase
         }).ToListAsync();
 
         if (quotes.Count == 0) {
-            return NotFound(new { Message = Messages.NoQuotesFound });
+            return NotFound(new ErrorResponse { Message = Messages.NoQuotesFound });
         }
 
         return Ok(quotes);
@@ -42,7 +42,7 @@ public class QuotesController : ControllerBase
 
         if (id <= 0)
         {
-            return BadRequest(new { Message = Messages.InvalidId });
+            return BadRequest(new ErrorResponse { Message = Messages.InvalidId });
         }
 
         var quote = await _db.QuotesDb
@@ -59,7 +59,7 @@ public class QuotesController : ControllerBase
             ).FirstOrDefaultAsync();
 
         if (quote == null) {
-            return NotFound(new { Message = Messages.QuoteNotFound });
+            return NotFound(new ErrorResponse { Message = Messages.QuoteNotFound });
         }
 
         return Ok(quote);
@@ -74,7 +74,7 @@ public class QuotesController : ControllerBase
             (!response.Type.HasValue || !Enum.IsDefined(typeof(QuoteType), response.Type.Value))
             )
         {
-            return BadRequest(new { Message = Messages.MissingRequiredFields });
+            return BadRequest(new ErrorResponse { Message = Messages.MissingRequiredFields });
         }
 
         //check if author already exists
@@ -107,12 +107,12 @@ public class QuotesController : ControllerBase
 
         if (id <= 0)
         {
-            return BadRequest(new { Message = Messages.InvalidId });
+            return BadRequest(new ErrorResponse { Message = Messages.InvalidId });
         }
 
         var quote = await _db.QuotesDb.FindAsync(id);
 
-        if (quote == null) return NotFound(new { Message = Messages.NoQuotesFound });
+        if (quote == null) return NotFound(new ErrorResponse { Message = Messages.QuoteNotFound });
 
         //Update Quote if its passed in DTO
         if (response.Quote != null)
@@ -163,12 +163,12 @@ public class QuotesController : ControllerBase
 
         if (id <= 0)
         {
-            return BadRequest(new { Message = Messages.InvalidId });
+            return BadRequest(new ErrorResponse { Message = Messages.InvalidId });
         }
 
         var author = await _db.AuthorDb.FindAsync(id);
 
-        if (author == null) return NotFound(new { Message = Messages.AuthorNotFound });
+        if (author == null) return NotFound(new ErrorResponse { Message = Messages.AuthorNotFound });
 
         if (response.FirstName != null)
         {
@@ -195,12 +195,12 @@ public class QuotesController : ControllerBase
 
         if (id <= 0)
         {
-            return BadRequest(new { Message = Messages.InvalidId });
+            return BadRequest(new ErrorResponse { Message = Messages.InvalidId });
         }
 
         var quote = await _db.QuotesDb.FindAsync(id);
 
-        if (quote == null) return NotFound(new { Message = Messages.QuoteNotFound });
+        if (quote == null) return NotFound(new ErrorResponse { Message = Messages.QuoteNotFound });
 
         _db.QuotesDb.Remove(quote);
         await _db.SaveChangesAsync();
@@ -213,12 +213,12 @@ public class QuotesController : ControllerBase
     {
         if (id <= 0)
         {
-            return BadRequest(new { Message = Messages.InvalidId });
+            return BadRequest(new ErrorResponse { Message = Messages.InvalidId });
         }
 
         var author = await _db.AuthorDb.FindAsync(id);
 
-        if (author == null) return NotFound( new { Message = Messages.AuthorNotFound });
+        if (author == null) return NotFound(new ErrorResponse { Message = Messages.AuthorNotFound });
 
         var quotes = await _db.QuotesDb.Where(row => row.AuthorId == author.Id).ToListAsync();
 
