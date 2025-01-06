@@ -48,13 +48,13 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task GetAllQuotes_ShouldReturn_NotFoundWhenQuotesDontExist()
+    public async Task GetAllQuotesAsync_ShouldReturn_NotFoundWhenQuotesDontExist()
     {
         //Arrange
         await InitAsync(false);
 
         //Act
-        var actionResult = await quotesController.GetAllQuotes();
+        var actionResult = await quotesController.GetAllQuotesAsync();
 
         //Assert
         var objectResult = Assert.IsType<NotFoundObjectResult>(actionResult.Result);
@@ -63,13 +63,13 @@ public class QuotesControllerTest
     }
     
     [Fact]
-    public async Task GetAllQuotes_ShouldReturn_OkWhenQuotesExist()
+    public async Task GetAllQuotesAsync_ShouldReturn_OkWhenQuotesExist()
     {
         //Arrange
         await InitAsync();
 
         //Act
-        var actionResult = await quotesController.GetAllQuotes();
+        var actionResult = await quotesController.GetAllQuotesAsync();
 
         //Assert
         var objectResult = Assert.IsType<OkObjectResult>(actionResult.Result);
@@ -79,14 +79,14 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task GetQuoteByID_ShouldReturn_BadRequestWhenIdLessThanZero()
+    public async Task GetQuoteByIDAsync_ShouldReturn_BadRequestWhenIdLessThanZero()
     {
         //Arrange
         await InitAsync(false);
         int id = 0;
 
         //Act
-        var actionResult = await quotesController.GetQuoteByID(id);
+        var actionResult = await quotesController.GetQuoteByIDAsync(id);
 
         //Assert
         var objectResult = Assert.IsType<BadRequestObjectResult>(actionResult.Result);
@@ -96,14 +96,14 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task GetQuoteByID_ShouldReturn_OkWhenIdDontExists()
+    public async Task GetQuoteByIDAsync_ShouldReturn_OkWhenIdDontExists()
     {
         //Arrange
         await InitAsync();
         int id = 1;
 
         //Act
-        var actionResult = await quotesController.GetQuoteByID(id);
+        var actionResult = await quotesController.GetQuoteByIDAsync(id);
 
         //Assert
         var objectResult = Assert.IsType<OkObjectResult>(actionResult.Result);
@@ -117,14 +117,14 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task GetQuoteByID_ShouldReturn_NotFoundWhenIdDontExists()
+    public async Task GetQuoteByIDAsync_ShouldReturn_NotFoundWhenIdDontExists()
     {
         //Arrange
         await InitAsync(false);
         int id = 999;
 
         //Act
-        var actionResult = await quotesController.GetQuoteByID(id);
+        var actionResult = await quotesController.GetQuoteByIDAsync(id);
 
         //Assert
         var objectResult = Assert.IsType<NotFoundObjectResult>(actionResult.Result);
@@ -134,7 +134,7 @@ public class QuotesControllerTest
 
 
     [Fact]
-    public async Task AddQuote_ShouldAddAQuoteWhenInputIsValid()
+    public async Task AddQuoteAsync_ShouldAddAQuoteWhenInputIsValid()
     {
         //Arrange
         await InitAsync(false);
@@ -148,7 +148,7 @@ public class QuotesControllerTest
         };
 
         //Act
-        var actionResult = await quotesController.AddQuote(response);
+        var actionResult = await quotesController.AddQuoteAsync(response);
 
         //Assert
         var createdAtRouteResult = Assert.IsType<CreatedAtRouteResult>(actionResult);
@@ -157,7 +157,7 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task AddQuote_ShouldReturnBadRequestWhen_QuoteIsEmpty()
+    public async Task AddQuoteAsync_ShouldReturnBadRequestWhen_QuoteIsEmpty()
     {
         //Arrange
         await InitAsync(false);
@@ -171,7 +171,7 @@ public class QuotesControllerTest
         };
 
         //Act
-        var actionResult = await quotesController.AddQuote(response);
+        var actionResult = await quotesController.AddQuoteAsync(response);
 
         //Assert
         var objectRequest = Assert.IsType<BadRequestObjectResult>(actionResult);
@@ -180,7 +180,7 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task AddQuote_ShouldReturnBadRequestWhen_FirstNameIsEmpty()
+    public async Task AddQuoteAsync_ShouldReturnBadRequestWhen_FirstNameIsEmpty()
     {
         //Arrange
         await InitAsync(false);
@@ -194,7 +194,7 @@ public class QuotesControllerTest
         };
 
         //Act
-        var actionResult = await quotesController.AddQuote(response);
+        var actionResult = await quotesController.AddQuoteAsync(response);
 
         //Assert
         var objectRequest = Assert.IsType<BadRequestObjectResult>(actionResult);
@@ -203,7 +203,7 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task AddQuote_ShouldReturnBadRequestWhen_LastNameIsEmpty()
+    public async Task AddQuoteAsync_ShouldReturnBadRequestWhen_LastNameIsEmpty()
     {
         //Arrange
         await InitAsync(false);
@@ -217,7 +217,7 @@ public class QuotesControllerTest
         };
 
         //Act
-        var actionResult = await quotesController.AddQuote(response);
+        var actionResult = await quotesController.AddQuoteAsync(response);
 
         //Assert
         var objectRequest = Assert.IsType<BadRequestObjectResult>(actionResult);
@@ -226,7 +226,7 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task AddQuote_ShouldReturnBadRequestWhen_TypeIsEmpty()
+    public async Task AddQuoteAsync_ShouldReturnBadRequestWhen_TypeIsEmpty()
     {
         //Arrange
         await InitAsync(false);
@@ -240,7 +240,7 @@ public class QuotesControllerTest
         };
 
         //Act
-        var actionResult = await quotesController.AddQuote(response);
+        var actionResult = await quotesController.AddQuoteAsync(response);
 
         //Assert
         var objectRequest = Assert.IsType<BadRequestObjectResult>(actionResult);
@@ -249,7 +249,7 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task AddQuote_ShouldAddAQuoteWhenAuthorAlreadyExists()
+    public async Task AddQuoteAsync_ShouldAddAQuoteWhenAuthorAlreadyExists()
     {
         //Arrange
         await InitAsync();
@@ -262,7 +262,7 @@ public class QuotesControllerTest
         };
 
         //Act
-        var actionResult = await quotesController.AddQuote(response);
+        var actionResult = await quotesController.AddQuoteAsync(response);
 
         //Assert
         var createdAtRouteResult = Assert.IsType<CreatedAtRouteResult>(actionResult);
@@ -272,9 +272,8 @@ public class QuotesControllerTest
 
     }
 
-
     [Fact]
-    public async Task UpdateQuote_ShouldReturn_BadRequestWhenIdLessThanZero() 
+    public async Task UpdateQuoteAsync_ShouldReturn_BadRequestWhenIdLessThanZero() 
     {
         //Arrange
         await InitAsync(false);
@@ -290,7 +289,7 @@ public class QuotesControllerTest
         int id = 0;
 
         //Act
-        var actionResult = await quotesController.UpdateQuote(id, response);
+        var actionResult = await quotesController.UpdateQuoteAsync(id, response);
 
         //Assert
         var objectResult = Assert.IsType<BadRequestObjectResult>(actionResult);
@@ -299,9 +298,8 @@ public class QuotesControllerTest
 
     }
 
-
     [Fact]
-    public async Task UpdateQuote_ShouldReturn_NotFoundWhenIdDontExists()
+    public async Task UpdateQuoteAsync_ShouldReturn_NotFoundWhenIdDontExists()
     {
         //Arrange
         await InitAsync(false);
@@ -317,7 +315,7 @@ public class QuotesControllerTest
         int id = 999;
 
         //Act
-        var actionResult = await quotesController.UpdateQuote(id, response);
+        var actionResult = await quotesController.UpdateQuoteAsync(id, response);
 
         //Assert
         var objectResult = Assert.IsType<NotFoundObjectResult>(actionResult);
@@ -326,7 +324,7 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task UpdateQuote_ShouldUpdateQuoteIfInputIsValid()
+    public async Task UpdateQuoteAsync_ShouldUpdateQuoteIfInputIsValid()
     {
         //Arrange
         await InitAsync();
@@ -343,7 +341,7 @@ public class QuotesControllerTest
         int id = 1;
 
         //Act
-        var actionResult = await quotesController.UpdateQuote(id, response);
+        var actionResult = await quotesController.UpdateQuoteAsync(id, response);
         var updatedQuote = await context.QuotesDb.FindAsync(id);
 
         //Assert
@@ -354,7 +352,7 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task UpdateAuthor_ShouldReturn_BadRequestWhenIdLessThanZero()
+    public async Task UpdateAuthorAsync_ShouldReturn_BadRequestWhenIdLessThanZero()
     {
         //Arrange
         await InitAsync(false);
@@ -370,7 +368,7 @@ public class QuotesControllerTest
 
 
         //Act
-        var actionResult = await quotesController.UpdateAuthor(id, response);
+        var actionResult = await quotesController.UpdateAuthorAsync(id, response);
 
 
         //Assert
@@ -380,7 +378,7 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task UpdateAuthor_ShouldReturn_NotFoundWhenIdDoesNotExist()
+    public async Task UpdateAuthorAsync_ShouldReturn_NotFoundWhenIdDoesNotExist()
     {
         //Arrange
         await InitAsync(false);
@@ -395,7 +393,7 @@ public class QuotesControllerTest
         };
 
         //Act
-        var actionResult = await quotesController.UpdateAuthor(id, response);
+        var actionResult = await quotesController.UpdateAuthorAsync(id, response);
 
         //Assert
         var objectResult = Assert.IsType<NotFoundObjectResult>(actionResult);
@@ -404,7 +402,7 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task UpdateAutho_ShouldUpdateAuthorIfInputIsValid()
+    public async Task UpdateAuthorAsync_ShouldUpdateAuthorIfInputIsValid()
     {
         //Arrange
         await InitAsync(true);
@@ -420,7 +418,7 @@ public class QuotesControllerTest
 
 
         //Act
-        var actionResult = await quotesController.UpdateAuthor(id, response);
+        var actionResult = await quotesController.UpdateAuthorAsync(id, response);
 
 
         //Assert
@@ -434,14 +432,14 @@ public class QuotesControllerTest
 
 
     [Fact]
-    public async Task DeleteQuote_ShouldReturn_BadRequestWhenIdLessThanZero() 
+    public async Task DeleteQuoteAsync_ShouldReturn_BadRequestWhenIdLessThanZero() 
     {
         //Arrange
         await InitAsync(false);
 
         int id = 0;
 
-        var actionResult = await quotesController.DeleteQuote(id);
+        var actionResult = await quotesController.DeleteQuoteAsync(id);
 
         //Assert
         var objectResult = Assert.IsType<BadRequestObjectResult>(actionResult);
@@ -450,14 +448,14 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task DeleteQuote_ShouldReturn_NotFoundWhenIdDoesNotExist() 
+    public async Task DeleteQuoteAsync_ShouldReturn_NotFoundWhenIdDoesNotExist() 
     {
         //Arrange
         await InitAsync(false);
 
         int id = 999;
 
-        var actionResult = await quotesController.DeleteQuote(id);
+        var actionResult = await quotesController.DeleteQuoteAsync(id);
 
         //Assert
         var objectResult = Assert.IsType<NotFoundObjectResult>(actionResult);
@@ -466,14 +464,14 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task DeleteQuote_ShouldDeleteQuoteIfIdIsValid() 
+    public async Task DeleteQuoteAsync_ShouldDeleteQuoteIfIdIsValid() 
     {
         //Arrange
         await InitAsync(true);
 
         int id = 1;
 
-        var actionResult = await quotesController.DeleteQuote(id);
+        var actionResult = await quotesController.DeleteQuoteAsync(id);
 
         //Assert
         var objectResult = Assert.IsType<NoContentResult>(actionResult);
@@ -483,14 +481,14 @@ public class QuotesControllerTest
 
 
     [Fact]
-    public async Task DeleteAuthor_ShouldReturn_BadRequestWhenIdLessThanZero()
+    public async Task DeleteAuthorAsync_ShouldReturn_BadRequestWhenIdLessThanZero()
     {
         //Arrange
         await InitAsync(false);
 
         int id = 0;
 
-        var actionResult = await quotesController.DeleteAuthor(id);
+        var actionResult = await quotesController.DeleteAuthorAsync(id);
 
         //Assert
         var objectResult = Assert.IsType<BadRequestObjectResult>(actionResult);
@@ -499,14 +497,14 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task DeleteAuthore_ShouldReturn_NotFoundWhenIdDoesNotExist()
+    public async Task DeleteAuthorAsync_ShouldReturn_NotFoundWhenIdDoesNotExist()
     {
         //Arrange
         await InitAsync(false);
 
         int id = 999;
 
-        var actionResult = await quotesController.DeleteAuthor(id);
+        var actionResult = await quotesController.DeleteAuthorAsync(id);
 
         //Assert
         var objectResult = Assert.IsType<NotFoundObjectResult>(actionResult);
@@ -515,14 +513,14 @@ public class QuotesControllerTest
     }
 
     [Fact]
-    public async Task DeleteAuthor_ShouldDeleteQuoteIfIdIsValid()
+    public async Task DeleteAuthorAsync_ShouldDeleteAuthorIfIdIsValid()
     {
         //Arrange
         await InitAsync(true);
 
         int id = 1;
 
-        var actionResult = await quotesController.DeleteAuthor(id);
+        var actionResult = await quotesController.DeleteAuthorAsync(id);
 
         //Assert
         var objectResult = Assert.IsType<NoContentResult>(actionResult);

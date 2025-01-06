@@ -93,9 +93,22 @@ div{
     background-color: transparent;
 }
 
+@font-face {
+    font-family: 'Julee-Regular';
+    src: url('./assets/fonts/Julee-Regular.ttf') format('truetype');
+}
+
 .home-div{
     color: var(--contrast-accent);
+    height: 90vh;
     text-align: center;
+    align-content: center;
+    font-family: 'Julee-Regular', sans-serif;
+    font-size: 10vw;
+}
+
+.about{
+    color: var(--contrast-accent);
 }
 
 .quote-card{

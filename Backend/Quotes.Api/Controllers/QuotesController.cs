@@ -19,7 +19,7 @@ public class QuotesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<QuotesDTO>>> GetAllQuotes()
+    public async Task<ActionResult<List<QuotesDTO>>> GetAllQuotesAsync()
     {
         var quotes = await _db.QuotesDb.Select(row => new QuotesDTO {
             Id = row.Id,
@@ -38,7 +38,7 @@ public class QuotesController : ControllerBase
     }
 
     [HttpGet("{id:int}", Name = RouteName.GetQuoteById)]
-    public async Task<ActionResult<QuotesDTO>> GetQuoteByID([FromRoute] int id) {
+    public async Task<ActionResult<QuotesDTO>> GetQuoteByIDAsync([FromRoute] int id) {
 
         if (id <= 0)
         {
@@ -66,7 +66,7 @@ public class QuotesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddQuote([FromBody] QuotesDTO response) {
+    public async Task<IActionResult> AddQuoteAsync([FromBody] QuotesDTO response) {
 
         if (string.IsNullOrWhiteSpace(response.Quote) ||
             string.IsNullOrWhiteSpace(response.FirstName) ||
@@ -103,7 +103,7 @@ public class QuotesController : ControllerBase
     }
 
     [HttpPut("quote/{id:int}")]
-    public async Task<IActionResult> UpdateQuote([FromRoute] int id, [FromBody] QuotesDTO response) {
+    public async Task<IActionResult> UpdateQuoteAsync([FromRoute] int id, [FromBody] QuotesDTO response) {
 
         if (id <= 0)
         {
@@ -158,7 +158,7 @@ public class QuotesController : ControllerBase
     }
 
     [HttpPut("author/{id:int}")]
-    public async Task<IActionResult> UpdateAuthor([FromRoute] int id, [FromBody] QuotesDTO response)
+    public async Task<IActionResult> UpdateAuthorAsync([FromRoute] int id, [FromBody] QuotesDTO response)
     {
 
         if (id <= 0)
@@ -190,7 +190,7 @@ public class QuotesController : ControllerBase
     }
 
     [HttpDelete("quote/{id:int}")]
-    public async Task<IActionResult> DeleteQuote([FromRoute] int id)
+    public async Task<IActionResult> DeleteQuoteAsync([FromRoute] int id)
     {
 
         if (id <= 0)
@@ -209,7 +209,7 @@ public class QuotesController : ControllerBase
     }
 
     [HttpDelete("author/{id:int}")]
-    public async Task<IActionResult> DeleteAuthor([FromRoute] int id)
+    public async Task<IActionResult> DeleteAuthorAsync([FromRoute] int id)
     {
         if (id <= 0)
         {
