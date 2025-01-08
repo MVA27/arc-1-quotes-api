@@ -7,6 +7,7 @@ WORKDIR /app
 # Copy the solution file and the project files into the container
 COPY Backend/Backend.sln ./Backend/
 COPY Backend/Quotes.Api/Quotes.Api.csproj ./Backend/Quotes.Api/
+COPY Backend/Quotes.Test/Quotes.Test.csproj ./Backend/Quotes.Test/
 
 # Restore dependencies
 RUN dotnet restore Backend/Backend.sln
