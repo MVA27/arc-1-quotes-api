@@ -82,7 +82,7 @@
 }
 
 body{
-    background-image: url("../public/green.svg");
+    background-image: url("../src/assets/green.svg");
     background-size: cover;
     padding-left: 5px;
     padding-right: 5px;

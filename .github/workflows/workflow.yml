@@ -59,6 +59,10 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore Backend/Backend.sln
 
+      # Run tests
+      - name: Run tests
+        run: dotnet test Backend/Backend.sln --configuration Release
+
       # Build the project
       - name: Build the project
         run: dotnet build Backend/Backend.sln --configuration Release
