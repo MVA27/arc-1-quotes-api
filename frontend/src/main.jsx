@@ -19,22 +19,7 @@ const router = createBrowserRouter(
       <Route path={ROUTES.HOME} element={<Container />}>
 
         <Route index element={ <Home/> } />
-
-        <Route 
-          path={ROUTES.QUOTES} element={ <Quotes/> } 
-          loader = {
-            async () => {
-
-              const endpoint = import.meta.env.VITE_API_URL;
-
-              const response = await fetch(endpoint + "/api/quotes");
-              const json = await response.json();
-              return json;
-
-            }
-          }
-        />
-
+        <Route path={ROUTES.QUOTES} element={ <Quotes/> } />
         <Route path={ROUTES.ABOUT} element={ <About /> } />
         
       </Route>
