@@ -82,7 +82,7 @@
 }
 
 body{
-    background-image: url("../src/assets/green.svg");
+    background-image: url("../public/green.svg");
     background-size: cover;
     padding-left: 5px;
     padding-right: 5px;
@@ -124,7 +124,11 @@ div{
     color: var(--gray-contrast);
 }
 
-.select-item:hover{
+/* .select-item:hover{
+    background-color: var(--primary-accent);
+} */
+
+.select-item:focus{
     background-color: var(--primary-accent);
 }
 

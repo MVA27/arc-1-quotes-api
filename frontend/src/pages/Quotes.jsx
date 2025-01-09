@@ -40,13 +40,13 @@ export default function Quotes(){
                     width: '100%',
                     height: '100vh',
 
-                    display: navigation == 'loading' ? 'flex' : undefined,
-                    justifyContent: navigation == 'loading' ? 'center' : undefined,
-                    alignItems:  navigation == 'loading' ? 'center' : undefined
+                    display: navigation.state == 'loading' ? 'flex' : undefined,
+                    justifyContent: navigation.state == 'loading' ? 'center' : undefined,
+                    alignItems:  navigation.state == 'loading' ? 'center' : undefined
                 }
             }>
                 { 
-                    navigation == 'loading'
+                    navigation.state == 'loading'
                         ? <Spinner className="spinner" size="3"/> 
                         : <ScrollArea type="always" scrollbars="vertical" style={{ height: '95%' }}>
                             <Flex direction="column"> 

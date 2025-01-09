@@ -8,24 +8,26 @@ This project consists of a .NET application which is hosted on an AWS EC2 instan
 
 ## Architecture Diagram
 ![arc-1-detail1](https://github.com/user-attachments/assets/4a1351a4-1c07-40ce-adcd-0f56016d0564)
-### 1. .NET Application on EC2
-- The .NET application is deployed on an AWS EC2 instance.
-- The EC2 instance resides in a public subnet of the VPC.
 
-### 2. Bastion Host
-- A bastion host is deployed in one of the public subnets to provide secure SSH access to resources within the private subnets.
-
-
-### 3. VPC and Subnets
+### 1. VPC and Subnets
 - The VPC is divided into four subnets: two public subnets and two private subnets.
 - Each subnet has its own route table.
 - The private subnet route tables connect to the internet through an Internet Gateway (IGW).
 
 <img src="https://github.com/user-attachments/assets/06182dcb-f743-4be5-8ce9-dcc4aa4e8cd9" style="width:40vw" />
 
+### 2. Bastion Host
+- A bastion host is deployed in one of the public subnets to provide secure SSH access to resources within the private subnets.
+
+### 3. .NET Application on EC2
+- The .NET application is deployed on an AWS EC2 instance.
+- The EC2 instance resides in a public subnet of the VPC.
+
 ### 4. Database Setup
 - The RDS instance uses MySQL as the database engine.
 - The RDS instance is hosted in two private subnets within the same VPC for high availability.
+
+<img src="https://github.com/user-attachments/assets/86fa0580-aa4a-4375-9e3d-a19ba538f170" style="width:40vw" />
 
 ### 5. React.js Frontend
 - The React.js application is hosted on Amazon S3 with static website hosting enabled.

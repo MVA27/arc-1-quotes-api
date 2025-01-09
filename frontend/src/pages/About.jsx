@@ -1,6 +1,7 @@
 import { Avatar, Text, Flex, Button, Container } from "@radix-ui/themes";
 import { GitHubLogoIcon } from "@radix-ui/react-icons"
 import { TEXT } from "../constants/text";
+import profile from "../assets/images/profile.png"
 
 export default function About(){
     return (
@@ -14,7 +15,7 @@ export default function About(){
                     >
 
                     <Avatar
-                        src="../src/assets/profile.png"
+                        src={profile}
                         fallback="M"
                         size="9"
                         radius="full"
