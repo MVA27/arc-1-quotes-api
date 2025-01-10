@@ -1,7 +1,8 @@
-import QuoteCard from "../components/QuoteCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { Box , Spinner, Flex, ScrollArea, Select } from '@radix-ui/themes'
 import { selectionItems } from '../constants/selectionItems';
+import SkeletonCard from "../components/SkeletonCard";
+const LazyQuoteCard = lazy( () => import("../components/QuoteCard") );
 
 export default function Quotes(){
 
@@ -61,7 +62,13 @@ export default function Quotes(){
                     <ScrollArea type="always" scrollbars="vertical" style={{ height: '95%' }}>
                         <Flex direction="column"> 
                             { 
-                                filteredData().map(item => ( < QuoteCard key={item.id} {...item} /> ) )
+                                filteredData().map(
+                                    item => ( 
+                                        <Suspense fallback={ <SkeletonCard/> } key={item.id} >
+                                            <LazyQuoteCard {...item} /> 
+                                        </Suspense>
+                                    )
+                                )
                             } 
                         </Flex>  
                     </ScrollArea>
