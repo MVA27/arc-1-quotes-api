@@ -37,12 +37,12 @@ export default function About(){
                         <br/>
                         <br/>
                         {TEXT.DESC_PARA2}
-
                     </Text>
 
-                    <Button className="button-primary" mt="7">
+                    <Button className="button-primary" mt="7" onClick={ ()=>{ window.open(TEXT.GITHUB, '_blank'); } }>
                         <GitHubLogoIcon /> GitHub
                     </Button>
+                    
                 </Flex>
             </Container>
         </>

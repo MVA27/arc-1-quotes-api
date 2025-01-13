@@ -10,8 +10,8 @@ export default function Quotes(){
     const [type , setType ] = useState(0);
 
     let filteredData = ()=>{
-        if (type === 0) return data
-        else return data.filter((item)=> item.type == type )
+        if (type === 0) return data.sort(() => Math.random() - 0.5);
+        else return data.sort(() => Math.random() - 0.5).filter((item)=> item.type === type )
     }
 
     useEffect(()=>{
@@ -32,10 +32,9 @@ export default function Quotes(){
         );
     }
 
-
     return (
-        
         <>
+
             <Select.Root defaultOpen={0} value={type} onValueChange={ setType } >
 
                 <Select.Trigger />
@@ -76,6 +75,5 @@ export default function Quotes(){
             </Box >
         
         </>
-
     );
 }

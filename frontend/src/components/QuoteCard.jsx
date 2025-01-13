@@ -29,6 +29,7 @@ export default function QuoteCard({quote, firstName, lastName, imageUrl}){
                     </Box>
                     
                 </Flex>
+                
             </Card>
             
         </Box>

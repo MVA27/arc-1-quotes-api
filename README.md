@@ -1,9 +1,10 @@
-# README.MD
+# ARC 1 ( AWS + ReactJS + C#) Quotes Application
 
 ## Overview 
 This project consists of a .NET application which is hosted on an AWS EC2 instance connected to an RDS database within the same VPC. The front-end is a React.js application hosted on Amazon S3. A CI/CD pipeline automates deployment of the applications when code is pushed to GitHub.
-
-![arc-1-overview-small](https://github.com/user-attachments/assets/8960983a-cef5-40fd-b6ad-444399d35ce3)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/84b1ec47-89d9-457a-91fa-599407e2f8e7" alt="Description" style="width:40vw">
+</p>
 
 
 ## Architecture Diagram

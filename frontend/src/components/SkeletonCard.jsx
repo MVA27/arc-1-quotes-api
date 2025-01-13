@@ -1,4 +1,5 @@
 import { Box, Card, Flex, Avatar, Text, Skeleton } from "@radix-ui/themes";
+import { TEXT } from "../constants/text"
 
 export default function SkeletonCard(){
     return (
@@ -17,11 +18,11 @@ export default function SkeletonCard(){
 
                 <Box>
                     <Text as="div" size="2" weight="bold">
-                        <Skeleton>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui nulla dicta error, quas delectus ad tempora, dolorem porro similique ipsa fugit voluptatem architecto exercitationem esse ducimus, aspernatur dolorum maiores maxime.</Skeleton>
+                        <Skeleton>{TEXT.DUMMY_QUOTE}</Skeleton>
                     </Text>
 
                     <Text as="div" size="2" className="card-author">
-                        <Skeleton>FirstName</Skeleton> <Skeleton>LastName</Skeleton>
+                        <Skeleton>{TEXT.DUMMY_FIRST_NAME}</Skeleton> <Skeleton>{TEXT.DUMMY_LAST_NAME}</Skeleton>
                     </Text>
                 </Box>
 
